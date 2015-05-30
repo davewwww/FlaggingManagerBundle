@@ -1,0 +1,3 @@
+imports:
+    - { resource: doctrine_cache.yml }
+    - { resource: dwo_config_prototype.yml }

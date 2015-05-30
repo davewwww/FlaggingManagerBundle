@@ -1,0 +1,25 @@
+imports:
+    - { resource: ../config/framework.yml }
+    - { resource: ../../../Fixtures/services.yml }
+    - { resource: @DwoFlaggingManagerBundle/Resources/config/dwo_config_prototype.yml }
+
+dwo_flagging_manager:
+  manager: dwo_flagging.manager.feature.config
+  database:
+    connection: foo
+
+dwo_flagging:
+  features:
+    test_feature: ~
+
+services:
+  foo:
+    class: stdClass
+  dwo_flagging_manager.cache.flagging.cache:
+    class: stdClass
+  dwo_flagging_manager.cache.flagging.db:
+    class: stdClass
+  dwo_flagging.cache.flagging.db:
+    class: stdClass
+  #dwo_flagging.manager.feature.db_and_config:
+  #  class: stdClass

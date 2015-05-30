@@ -1,0 +1,27 @@
+doctrine_cache:
+  custom_providers:
+    dbal:
+      prototype: "dwo.doctrine.dbal_provider"
+      definition_class: "Dwo\Doctrine\Cache\DependencyInjection\Definition\DbalDefinition"
+
+  providers:
+    flagging:
+      php_file:
+        extension: .cache.php
+        directory: %kernel.cache_dir%/dwo_flagging_manager/feature
+
+    flagging_dbal:
+      dbal:
+        connection: "@dwo_flagging_manager.db.connection"
+        table: "%dwo_flagging_manager.db.table%"
+
+  aliases:
+    dwo_flagging_manager.cache.flagging.cache: flagging
+    dwo_flagging_manager.cache.flagging.db: flagging_dbal
+
+
+services:
+  dwo.doctrine.dbal_provider:
+    class: Dwo\Doctrine\Cache\DbalCache
+    arguments: ["@dwo_flagging_manager.db.connection", "%dwo_flagging_manager.db.table%"]
+    public: false

@@ -1,0 +1,5 @@
+services:
+
+  dwo_flagging_manager.handler:
+    class: Dwo\FlaggingManager\Handler\FeatureHandler
+    arguments: ["@dwo_flagging_manager.manager.config_prototype"]

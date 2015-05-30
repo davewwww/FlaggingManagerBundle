@@ -1,0 +1,6 @@
+Dwo\FlaggingManager\Model\Feature:
+  properties:
+    content:
+      - Dwo\ConfigPrototype\Validator\ConfigPrototype:
+          type: 'feature'
+      - Dwo\FlaggingManager\Validator\VotersExists: ~

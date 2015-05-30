@@ -1,0 +1,7 @@
+dwo_flagging_manager:
+
+  manager: 'foo'
+
+  database:
+    connection: 'bar'
+    table: 'foobar'

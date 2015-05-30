@@ -1,0 +1,6 @@
+services:
+  dwo_flagging_manager.validator.voters_exists:
+    class: Dwo\FlaggingManager\Validator\VotersExistsValidator
+    arguments: ["@dwo_flagging.manager.voter"]
+    tags:
+      - { name: 'validator.constraint_validator', alias: 'voters_exists' }
