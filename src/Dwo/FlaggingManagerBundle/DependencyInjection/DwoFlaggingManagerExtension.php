@@ -22,6 +22,7 @@ class DwoFlaggingManagerExtension extends Extension
         $loader->load('services/handler.yml');
         $loader->load('services/manager.yml');
         $loader->load('services/validator.yml');
+        $loader->load('services/cache_warmer.yml');
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
