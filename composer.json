@@ -18,8 +18,8 @@
     "symfony/http-kernel": "~2.4",
     "symfony/dependency-injection": "~2.4",
     "doctrine/doctrine-cache-bundle": "^1.0",
-    "dwo/flagging_manager": "^1.0@dev",
-    "dwo/flagging_bundle": "^0.2.0@dev",
+    "dwo/flagging_bundle": "~0.2",
+    "dwo/flagging_manager": "@beta",
     "dwo/config_prototype_bundle": "^1.0@dev"
   },
   "autoload": {
