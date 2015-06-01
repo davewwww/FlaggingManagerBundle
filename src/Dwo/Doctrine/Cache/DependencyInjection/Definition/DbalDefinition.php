@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwo\FlaggingManagerBundle\DependencyInjection\Definition;
+namespace Dwo\Doctrine\DependencyInjection\Definition;
 
 use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\Definition\CacheDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

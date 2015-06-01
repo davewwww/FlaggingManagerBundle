@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwo\FlaggingManagerBundle\Cache;
+namespace Dwo\Doctrine\Cache;
 
 use Doctrine\Common\Cache\CacheProvider;
 use Doctrine\DBAL\Connection;
