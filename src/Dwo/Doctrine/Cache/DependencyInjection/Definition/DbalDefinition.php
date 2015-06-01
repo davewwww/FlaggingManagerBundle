@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwo\Doctrine\DependencyInjection\Definition;
+namespace Dwo\Doctrine\Cache\DependencyInjection\Definition;
 
 use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\Definition\CacheDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
