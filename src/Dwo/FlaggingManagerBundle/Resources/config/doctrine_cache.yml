@@ -11,9 +11,7 @@ doctrine_cache:
         directory: %kernel.cache_dir%/dwo_flagging_manager/feature
 
     flagging_dbal:
-      dbal:
-        connection: "@dwo_flagging_manager.db.connection"
-        table: "%dwo_flagging_manager.db.table%"
+      dbal: ~
 
   aliases:
     dwo_flagging_manager.cache.flagging.cache: flagging
