@@ -1,3 +1,8 @@
+list:
+    path:     /
+    defaults: { _controller: Dwo\FlaggingManagerBundle\Controller\FeatureController::listAction }
+    methods:  [GET]
+
 read:
     path:     /{featureName}
     defaults: { _controller: Dwo\FlaggingManagerBundle\Controller\FeatureController::readAction }

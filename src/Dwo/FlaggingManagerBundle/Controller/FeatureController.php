@@ -8,6 +8,7 @@ use Dwo\FlaggingManager\Model\Feature;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Router;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -17,10 +18,31 @@ use Symfony\Component\Yaml\Yaml;
  */
 class FeatureController extends ContainerAware
 {
-    public function getRequest()
-{
-    return $this->container->get('request_stack')->getCurrentRequest();
-}
+    /**
+     * @return Response
+     *
+     * @throws \Exception
+     */
+    public function listAction()
+    {
+        /** @var FeatureManagerInterface $manager */
+        $manager = $this->container->get('dwo_flagging_manager.manager');
+
+        /** @var Router $router */
+        $router = $this->container->get('router');
+
+        $list = [];
+        foreach($manager->findAllFeatures() as $feature) {
+            $route = $router->generate('read', array('featureName' => $feature->getName()));
+            $list[] = '<li><a href="'. $route .'">'. $feature->getName().'</a></li>';
+        }
+        $list = '<ul>'. implode('<br>', $list) .'</ul>';
+
+        $template = file_get_contents(__DIR__.'/../Resources/view/index.html');
+        $template = str_replace(array('{CONTENT}'), array($list), $template);
+
+        return new Response($template);
+    }
 
     /**
      * @param string $featureName
@@ -32,7 +54,7 @@ class FeatureController extends ContainerAware
     public function readAction($featureName)
     {
         $managerName = 'dwo_flagging_manager.manager';
-        if($this->getRequest()->query->has('live')) {
+        if ($this->getRequest()->query->has('live')) {
             $managerName = 'dwo_flagging.manager.feature';
         }
 
@@ -47,7 +69,7 @@ class FeatureController extends ContainerAware
         $featureArray = FeatureSerializer::serialize($feature);
         $featureYaml = Yaml::dump($featureArray, 3, 2);
 
-        $template = file_get_contents(__DIR__.'/../Resources/view/index.html');
+        $template = file_get_contents(__DIR__.'/../Resources/view/edit.html');
         $template = str_replace(array('{NAME}', '{DATA}'), array($featureName, $featureYaml), $template);
 
         return new Response($template);
@@ -79,4 +101,12 @@ class FeatureController extends ContainerAware
 
         return new Response('ok<p><a href="?">weiter</a>');
     }
+
+    /**
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->container->get('request_stack')->getCurrentRequest();
+}
 }
