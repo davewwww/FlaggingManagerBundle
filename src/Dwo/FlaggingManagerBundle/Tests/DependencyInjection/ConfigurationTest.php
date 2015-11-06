@@ -27,6 +27,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $processor = new Processor();
         $config = $processor->processConfiguration(new Configuration(), array($yml['dwo_flagging_manager']));
 
+        self::assertEquals('DwoFlaggingManagerBundle::index.html.twig', $config['index_template']);
         self::assertEquals('dwo_flagging_manager.manager.feature.db', $config['manager']);
         self::assertEquals('doctrine.dbal.default_connection', $config['database']['connection']);
         self::assertEquals('features', $config['database']['table']);

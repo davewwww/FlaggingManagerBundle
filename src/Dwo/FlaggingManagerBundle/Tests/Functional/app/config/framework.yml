@@ -9,6 +9,8 @@ framework:
     default_locale: en
     session:
         storage_id:     session.storage.mock_file
+    templating:
+        engines: ['twig']
 
 services:
     logger: { class: Psr\Log\NullLogger }

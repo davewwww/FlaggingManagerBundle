@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
             ->children()
 
                 ->scalarNode('manager')->defaultValue('dwo_flagging_manager.manager.feature.db')->end()
+                ->scalarNode('index_template')->defaultValue('DwoFlaggingManagerBundle::index.html.twig')->end()
 
                 ->arrayNode('database')
                     ->addDefaultsIfNotSet()

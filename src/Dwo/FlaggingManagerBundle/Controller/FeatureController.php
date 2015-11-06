@@ -8,7 +8,6 @@ use Dwo\FlaggingManager\Model\Feature;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Router;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -28,20 +27,13 @@ class FeatureController extends ContainerAware
         /** @var FeatureManagerInterface $manager */
         $manager = $this->container->get('dwo_flagging_manager.manager');
 
-        /** @var Router $router */
-        $router = $this->container->get('router');
-
-        $list = [];
-        foreach($manager->findAllFeatures() as $feature) {
-            $route = $router->generate('read', array('featureName' => $feature->getName()));
-            $list[] = '<li><a href="'. $route .'">'. $feature->getName().'</a></li>';
-        }
-        $list = '<ul>'. implode('<br>', $list) .'</ul>';
-
-        $template = file_get_contents(__DIR__.'/../Resources/view/index.html');
-        $template = str_replace(array('{CONTENT}'), array($list), $template);
-
-        return new Response($template);
+        return $this->render(
+            'DwoFlaggingManagerBundle::list.html.twig',
+            array(
+                'index_template' => $this->container->getParameter('dwo_flagging_manager.index_template'),
+                'features'       => $manager->findAllFeatures()
+            )
+        );
     }
 
     /**
@@ -69,10 +61,14 @@ class FeatureController extends ContainerAware
         $featureArray = FeatureSerializer::serialize($feature);
         $featureYaml = Yaml::dump($featureArray, 3, 2);
 
-        $template = file_get_contents(__DIR__.'/../Resources/view/edit.html');
-        $template = str_replace(array('{NAME}', '{DATA}'), array($featureName, $featureYaml), $template);
-
-        return new Response($template);
+        return $this->render(
+            'DwoFlaggingManagerBundle::edit.html.twig',
+            array(
+                'index_template' => $this->container->getParameter('dwo_flagging_manager.index_template'),
+                'feature'        => $feature,
+                'data'           => $featureYaml,
+            )
+        );
     }
 
     /**
@@ -108,5 +104,19 @@ class FeatureController extends ContainerAware
     public function getRequest()
     {
         return $this->container->get('request_stack')->getCurrentRequest();
-}
+    }
+
+    /**
+     * Renders a view.
+     *
+     * @param string   $view       The view name
+     * @param array    $parameters An array of parameters to pass to the view
+     * @param Response $response   A response instance
+     *
+     * @return Response A Response instance
+     */
+    public function render($view, array $parameters = array(), Response $response = null)
+    {
+        return $this->container->get('templating')->renderResponse($view, $parameters, $response);
+    }
 }

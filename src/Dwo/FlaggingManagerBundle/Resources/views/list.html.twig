@@ -1,0 +1,15 @@
+{% extends index_template %}
+
+{% block body %}
+
+    <ul>
+        {% for feature in features %}
+            <li>
+                <a href="{{ path('flagging_manager_read', {'featureName': feature.name}) }}">
+                    {{ feature.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

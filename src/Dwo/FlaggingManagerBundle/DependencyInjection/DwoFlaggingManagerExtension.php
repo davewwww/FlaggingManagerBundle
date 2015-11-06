@@ -31,5 +31,6 @@ class DwoFlaggingManagerExtension extends Extension
 
         $container->setAlias('dwo_flagging_manager.db.connection', $config['database']['connection']);
         $container->setParameter('dwo_flagging_manager.db.table', $config['database']['table']);
+        $container->setParameter('dwo_flagging_manager.index_template', $config['index_template']);
     }
 }

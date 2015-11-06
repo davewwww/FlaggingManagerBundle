@@ -1,14 +1,14 @@
-list:
+flagging_manager_list:
     path:     /
     defaults: { _controller: Dwo\FlaggingManagerBundle\Controller\FeatureController::listAction }
     methods:  [GET]
 
-read:
+flagging_manager_read:
     path:     /{featureName}
     defaults: { _controller: Dwo\FlaggingManagerBundle\Controller\FeatureController::readAction }
     methods:  [GET]
 
-write:
+flagging_manager_write:
     path:     /{featureName}
     defaults: { _controller: Dwo\FlaggingManagerBundle\Controller\FeatureController::writeAction }
     methods:  [POST]
