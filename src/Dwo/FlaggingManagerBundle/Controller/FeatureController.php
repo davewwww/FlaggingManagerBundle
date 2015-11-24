@@ -61,12 +61,16 @@ class FeatureController extends ContainerAware
         $featureArray = FeatureSerializer::serialize($feature);
         $featureYaml = Yaml::dump($featureArray, 3, 2);
 
+        $voterManager = $this->container->get('dwo_flagging.manager.voter');
+        $voters = array_keys($voterManager->getAllVoters());
+
         return $this->render(
             'DwoFlaggingManagerBundle::edit.html.twig',
             array(
                 'index_template' => $this->container->getParameter('dwo_flagging_manager.index_template'),
                 'feature'        => $feature,
                 'data'           => $featureYaml,
+                'voters'         => $voters,
             )
         );
     }
