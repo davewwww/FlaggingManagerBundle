@@ -1,7 +1,7 @@
 imports:
-    - { resource: ../config/framework.yml }
-    - { resource: ../../../Fixtures/services.yml }
-    - { resource: @DwoFlaggingManagerBundle/Resources/config/dwo_config_prototype.yml }
+    - { resource: '../config/framework.yml' }
+    - { resource: '../../../Fixtures/services.yml' }
+    - { resource: '@DwoFlaggingManagerBundle/Resources/config/dwo_config_prototype.yml' }
 
 dwo_flagging_manager:
   manager: dwo_flagging.manager.feature.config
@@ -16,6 +16,6 @@ services:
   foo:
     class: stdClass
   dwo_flagging_manager.cache.flagging.cache:
-    class: Doctrine\Common\Cache\VoidCache
+    class: 'Doctrine\Common\Cache\VoidCache'
   dwo_flagging_manager.cache.flagging.db:
-    class: Doctrine\Common\Cache\VoidCache
+    class: 'Doctrine\Common\Cache\VoidCache'
