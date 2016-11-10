@@ -2,13 +2,13 @@ doctrine_cache:
   custom_providers:
     dbal:
       prototype: "dwo.doctrine.dbal_provider"
-      definition_class: "Dwo\Doctrine\Cache\DependencyInjection\Definition\DbalDefinition"
+      definition_class: 'Dwo\Doctrine\Cache\DependencyInjection\Definition\DbalDefinition'
 
   providers:
     flagging:
       php_file:
         extension: .cache.php
-        directory: %kernel.cache_dir%/dwo_flagging_manager/feature
+        directory: '%kernel.cache_dir%/dwo_flagging_manager/feature'
 
     flagging_dbal:
       dbal: ~
@@ -20,6 +20,6 @@ doctrine_cache:
 
 services:
   dwo.doctrine.dbal_provider:
-    class: Dwo\Doctrine\Cache\DbalCache
+    class: 'Dwo\Doctrine\Cache\DbalCache'
     arguments: ["@dwo_flagging_manager.db.connection", "%dwo_flagging_manager.db.table%"]
     public: false

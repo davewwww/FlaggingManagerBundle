@@ -1,13 +1,13 @@
 services:
 
   dwo_flagging_manager.manager.feature.db:
-    class: Dwo\FlaggingManager\Cache\CacheOrDelegateFeatureManager
-    arguments: ["@dwo_flagging_manager.cache.flagging.db", "@dwo_flagging.manager.feature.config"]
+    class: 'Dwo\FlaggingManager\Cache\CacheOrDelegateFeatureManager'
+    arguments: ['@dwo_flagging_manager.cache.flagging.db', '@dwo_flagging.manager.feature.config']
 
   dwo_flagging_manager.manager.feature.cache:
-    class: Dwo\FlaggingManager\Cache\CacheOrDelegateFeatureManager
-    arguments: ["@dwo_flagging_manager.cache.flagging.cache", "@dwo_flagging_manager.manager.feature.db"]
+    class: 'Dwo\FlaggingManager\Cache\CacheOrDelegateFeatureManager'
+    arguments: ['@dwo_flagging_manager.cache.flagging.cache', '@dwo_flagging_manager.manager.feature.db']
 
   dwo_flagging_manager.manager.config_prototype:
-    class: Dwo\FlaggingManager\Cache\ConfigPrototypeManager
-    arguments: ["@dwo_flagging_manager.cache.flagging.db"]
+    class: 'Dwo\FlaggingManager\Cache\ConfigPrototypeManager'
+    arguments: ['@dwo_flagging_manager.cache.flagging.db']

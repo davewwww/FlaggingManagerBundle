@@ -1,7 +1,7 @@
 services:
 
   dwo_flagging_manager.cache_warmer.flagging:
-    class: Dwo\FlaggingManagerBundle\CacheWarmer\DoctrineCacheWarmer
-    arguments: ["@dwo_flagging_manager.cache.flagging.cache"]
+    class: 'Dwo\FlaggingManagerBundle\CacheWarmer\DoctrineCacheWarmer'
+    arguments: ['@dwo_flagging_manager.cache.flagging.cache']
     tags:
       - { name: 'kernel.cache_warmer' }
