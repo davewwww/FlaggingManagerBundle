@@ -5,17 +5,18 @@ namespace Dwo\FlaggingManagerBundle\Controller;
 use Dwo\Flagging\Model\FeatureManagerInterface;
 use Dwo\Flagging\Serializer\FeatureSerializer;
 use Dwo\FlaggingManager\Model\Feature;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Class FeatureController
  *
  * @author Dave Www <davewwwo@gmail.com>
  */
-class FeatureController extends ContainerAware
+class FeatureController extends Controller
 {
     /**
      * @return Response
@@ -90,6 +91,7 @@ class FeatureController extends ContainerAware
         $form->setName($featureName);
         $form->setContent($dataArray = Yaml::parse($dataYaml));
 
+        /** @var ValidatorInterface $validator */
         $validator = $this->container->get('validator');
         $violations = $validator->validate($form);
         if ($violations->has(0)) {
